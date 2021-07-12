@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import ReactWeather, { useOpenWeather } from 'react-open-weather';
 import './App.css';
 
 function App() {
+  const { data, isLoading, errorMessage } = useOpenWeather({
+    key: 'f8380a9a12337a0ccff953df033ba08f',
+    lat: '16.047079',
+    lon: '108.206230',
+    lang: 'en',
+    unit: 'metric',
+  });
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ReactWeather
+        isLoading={isLoading}
+        errorMessage={errorMessage}
+        data={data}
+        lang="en"
+        locationLabel="Đà Nẵng"
+        unitsLabels={{ temperature: 'C', windSpeed: 'Km/h' }}
+        showForecast
+      />
     </div>
   );
 }
