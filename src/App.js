@@ -5,11 +5,14 @@ import React, {useState, useEffect} from 'react';
 function App() {
   const [lat, setLat] = useState([]);
   const [long, setLong] = useState([]);
+  const [locationLabel,setLocationLabel] = useState([]);
   const { data, isLoading, errorMessage } = useOpenWeather({
-    lat: 16.047079,
-    lon: 108.206230,
+    key: 'f8380a9a12337a0ccff953df033ba08f',
+    lat: lat,
+    lon: long,
+    locationLabel: locationLabel,
     lang: 'en',
-    unit: 'metric',
+    unit: 'metric',locationLabel
   });
 
   useEffect(() => {
@@ -25,7 +28,8 @@ function App() {
   return (
     <div className="App">
         <ReactWeather
-          isLoading={isLoading}
+          isLoading={isLoading}locationLabel
+          locationLabel={locationLabel}
           errorMessage={errorMessage}
           data={data}
           lang="en"
